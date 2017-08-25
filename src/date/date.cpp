@@ -3,10 +3,13 @@
 
 #include "date.h"
 
+
 Date::Date(const int day, const Month month, const int year):
 _day{day},_month{month},_year{year}
 {
-	
+	if(!((_day > 0) && (_day <= daysInMonth())) || _year < 0){
+		throw DateException();
+	}
 }
 int Date::day() const
 {
@@ -48,7 +51,7 @@ int Date::daysInMonth() const
 		case Month::June: 
 		case Month::September:
 		case Month::November:
-			return 30;	
+			return 30;
 		case Month::February:
 			if ( isLeapYear() ) return 29;
 			else return 28;

@@ -33,7 +33,11 @@ TEST_CASE("Valid Date is initialised correctly") {
 // verify that an exception is thrown when an attempt is made
 // to construct an invalid date. Think carefully about which
 // invalid dates to test.
-
+TEST_CASE("Check invalid date, if day is out of range"){
+	CHECK_THROWS_AS(Date testday(-10,Month::January,1),DateException);
+	CHECK_THROWS_AS(Date testday(0,Month::January,1),DateException);
+	CHECK_THROWS_AS(Date testday(45,Month::January,1),DateException);
+}
 
 // Exercise 2.3
 //TEST_CASE("Identical Dates are Equal") {

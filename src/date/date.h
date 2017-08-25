@@ -7,6 +7,7 @@
 #include <iostream>
 using namespace std;
 
+class DateException{};
 enum class Month 
 {
 	January = 1, 
