@@ -78,8 +78,29 @@ TEST_CASE("Different dates are not equal") {
 // Exercise 2.4
 // Provide tests for a new member function of the Date class
 // which will increase the date by one day.
+TEST_CASE("add 1 day to date, day must change"){
+	Date date_1(26, Month::July, 2017);
+	Date date_2(27, Month::July, 2017);
+	
+	date_1.addDay();
+	CHECK(date_1 == date_2);
+}
 
+TEST_CASE("add 1 day to date, Month and day must change"){
+	Date date_1(31, Month::July, 2017);
+	Date date_2(1, Month::August, 2017);
+	
+	date_1.addDay();
+	CHECK(date_1 == date_2);
+}
 
+TEST_CASE("add 1 day to date, year,Month and day must change"){
+	Date date_1(31, Month::December, 2017);
+	Date date_2(1, Month::January, 2018);
+	
+	date_1.addDay();
+	CHECK(date_1 == date_2);
+}
 // Exercise 2.5
 // Write tests for the new default constructor and the
 // setDefaultDate method.

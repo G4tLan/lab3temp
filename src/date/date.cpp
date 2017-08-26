@@ -76,7 +76,7 @@ void printDate(const Date& date)
 bool Date::operator==(const Date& rhs) const{
 	
 	if(rhs.day() == _day){
-		if(rhs.month() == _month){
+		if(static_cast<int>(rhs.month()) == static_cast<int>(_month)){
 			if(rhs.year() == _year){
 				return true;
 			}
@@ -84,5 +84,20 @@ bool Date::operator==(const Date& rhs) const{
 	}else{
 		return false;
 	}
+}
+
+//Exercise 2.4
+void Date::addDay(){
+	//convert current Date to total num of days
+	auto numOfDays = static_cast<double>(_year)*365.25 + ((static_cast<double>(_month) - 1)*365.25)/12 + static_cast<double>(_day);
+	numOfDays = numOfDays + 1; //add one day
+	auto temp = numOfDays/365.25;
+	//convert numOfDays to years, months and day
+	_year = static_cast<int>(temp); 
+	temp = (temp - _year)*12;
+	auto temp2 = static_cast<int>(temp);
+	_month = static_cast<Month>(temp2 + 1);
+	auto temp3 = (temp - temp2)*(365.25/12) + 0.0001;
+	_day = static_cast<int>(temp3);
 }
 
