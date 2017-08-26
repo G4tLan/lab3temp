@@ -104,3 +104,27 @@ TEST_CASE("add 1 day to date, year,Month and day must change"){
 // Exercise 2.5
 // Write tests for the new default constructor and the
 // setDefaultDate method.
+TEST_CASE("Check default date is correct"){
+	Date default_date(1, Month::January, 1900);
+	
+	CHECK(default_date == Date::getDefaultDate());
+}
+
+TEST_CASE("default date must change for all Date objects"){
+	Date object1(1, Month::July, 2050);
+	Date object2(5, Month::October, 2050);
+	Date object3(10, Month::July, 50);
+	
+	Date::setDefaultDate(1, Month::July, 2050);
+	CHECK(object1 == Date::getDefaultDate());
+	
+	Date::setDefaultDate(5, Month::October, 2050);
+	CHECK(object2 == Date::getDefaultDate());
+	
+	Date::setDefaultDate(10, Month::July, 50);
+	CHECK(object3 == Date::getDefaultDate());
+}
+TEST_CASE("Date object is set to the default date"){
+	Date date;
+	CHECK(date == Date::getDefaultDate());
+}

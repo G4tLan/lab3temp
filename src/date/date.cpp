@@ -11,6 +11,14 @@ _day{day},_month{month},_year{year}
 		throw DateException();
 	}
 }
+Date Date::_default{1, Month::January, 1900};
+Date::Date(){	
+	Date::setDefaultDate(1, Month::January, 1900);
+	_day = Date::_default.day();
+	_month = Date::_default.month();
+	_year = Date::_default.year();
+}
+
 int Date::day() const
 {
 	return _day;
@@ -100,4 +108,9 @@ void Date::addDay(){
 	auto temp3 = (temp - temp2)*(365.25/12) + 0.0001;
 	_day = static_cast<int>(temp3);
 }
+//Exercise 2.5
 
+void Date::setDefaultDate(int day, Month month, int year){
+	Date temp{day,month,year};
+	Date::_default = temp;
+}

@@ -28,6 +28,7 @@ class Date
 {
 public:	
 	Date(const int day, const Month month, const int year);
+	Date();
 	// return the day of the month
 	int	day () const;
 	// return the month of the year
@@ -38,6 +39,8 @@ public:
 	bool isLeapYear () const;	
 	bool operator==(const Date& rhs) const;
 	void addDay();
+	static void setDefaultDate(int day, Month month , int year);
+	static Date getDefaultDate(){return Date::_default;}
 
 private:
 	// return the number of days in the _month
@@ -46,6 +49,7 @@ private:
 	int	_day;
 	Month _month;
 	int	_year;
+	static Date _default;
 
 };
 
